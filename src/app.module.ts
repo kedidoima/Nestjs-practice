@@ -6,15 +6,21 @@ import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { GoogleStrategy } from './auth/google.strategy';
+import { MulterModule } from '@nestjs/platform-express';
+import { StorageModule } from './storage/storage.module';
 
 @Module({
   imports: [
     UserModule, 
     AuthModule,
     ConfigModule.forRoot({
-      //envFilePath: '.env',
+      envFilePath: '.env',
     }),
-    MongooseModule.forRoot('mongodb://localhost/nest')
+    MulterModule.register({
+      dest: './upload/image',
+    }),
+    MongooseModule.forRoot('mongodb://localhost/nest'),
+    StorageModule
   ],
   controllers: [AppController],
   providers: [AppService,GoogleStrategy],

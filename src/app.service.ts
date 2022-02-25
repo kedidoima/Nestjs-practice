@@ -10,10 +10,8 @@ export class AppService {
     if (!req.user){
       return 'No user found'
     }
-    return {
-      message : 'login',
-      user : req.user
-    }
+    return req.user.accessToken
+    
   }
   
 }

@@ -2,9 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
+import * as admin from 'firebase-admin';
+import { ServiceAccount } from "firebase-admin";
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  
   const config = new DocumentBuilder()
     .setTitle('Nest API')
     .setDescription('the description of the API')
